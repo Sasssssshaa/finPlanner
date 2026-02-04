@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailsView: View {
+    @State var isNotificationSelected: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             header
@@ -43,6 +44,7 @@ struct DetailsView: View {
                             Text("Найближчий платіж")
                                 .cygre(.regular, 14)
                                 .foregroundStyle(.appYellow)
+                                .offset(y: -3)
                             Spacer()
                             HStack(spacing: 4) {
                                 Text("сплачено")
@@ -64,14 +66,20 @@ struct DetailsView: View {
                             Text("Повідомлення о платежах")
                                 .cygre(.regular, 14)
                                 .foregroundStyle(.appYellow)
+                                .offset(y: -3)
+                            
+                            Spacer()
+                            
+                            RadioButtonView(isSelected: $isNotificationSelected)
                         }
                         .padding(.horizontal, 10)
                     }
                 }
             }
             Spacer()
-            VStack(alignment: .leading) {
-                
+            VStack(alignment: .leading, spacing: 18) {
+                FullButton(text: "Закрити достроково", fillColor: .appYellow, textColor: .appBlack)
+                SolidButton(text: "Видалити останній платіж", solidColor: .appYellow, textColor: .appYellow)
             }
         }
         .padding(.horizontal, 20)
@@ -118,5 +126,4 @@ extension DetailsView {
         }
     }
 }
-
 

@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct FullButton: View {
+    var text: String
+    var fillColor: Color
+    var textColor: Color 
     var body: some View {
         Button {
             //
         } label: {
-            Text("Сплатити")
-                .cygre(.light, 12)
-                .foregroundStyle(.white)
+            Text(text)
+                .cygre(.regular, 12)
+                .foregroundStyle(textColor)
                 .frame(maxWidth: .infinity)
                 .padding(.top, 12)
                 .padding(.bottom, 16)
-                .background(.appBlack)
+                .background(fillColor)
                 .clipShape(.capsule)
         }
 
