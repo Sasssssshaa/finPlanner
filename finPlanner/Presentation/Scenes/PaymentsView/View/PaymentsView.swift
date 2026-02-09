@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PaymentsView: View {
     @State var date: Date = .now
+    @Binding var path: NavigationPath
     var body: some View {
         
         ZStack(alignment: .top) {
@@ -17,8 +18,8 @@ struct PaymentsView: View {
                        
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 19) {
-                    PaymentCard()
-                    PaymentCard()
+                    PaymentCard(path: $path)
+                    PaymentCard(path: $path)
                 }
                 .padding(.top, 135)
                 .padding(.bottom, 70)
@@ -29,6 +30,6 @@ struct PaymentsView: View {
     }
 }
 
-#Preview {
-    PaymentsView()
-}
+//#Preview {
+//    PaymentsView()
+//}

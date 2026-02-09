@@ -10,9 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @State var isShowAddView: Bool = false
     @State var payType: PayType = .mounthly
+    @Binding var path: NavigationPath
     var body: some View {
         ZStack(alignment: .top) {
-            HeaderView(page: HeaderViewContent(totalPrice: "Сума боргу", title: "723 343 $", data: "15 січня", pageType: .main), action: {
+            HeaderView(page: HeaderViewContent(totalPrice: "723 343", title: "Сума боргу", data: "15 січня", pageType: .main), action: {
                 isShowAddView.toggle()
             }, date: .constant(.now))
             .zIndex(1)
@@ -22,13 +23,13 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 19) {
                         switch payType {
                         case .mounthly:
-                            PaymentCard()
-                            PaymentCard()
-                            PaymentCard()
-                            PaymentCard()
+                            PaymentCard(path: $path)
+                            PaymentCard(path: $path)
+                            PaymentCard(path: $path)
+                            PaymentCard(path: $path)
                         case .oneTime:
-                            PaymentCard()
-                            PaymentCard()
+                            PaymentCard(path: $path)
+                            PaymentCard(path: $path)
                         }
                        
 
@@ -50,6 +51,4 @@ struct ContentView: View {
 
 
 
-#Preview {
-    ContentView()
-}
+//

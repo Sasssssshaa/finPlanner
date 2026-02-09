@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaymentCard: View {
+    @Binding var path: NavigationPath
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 5) {
@@ -50,7 +51,9 @@ struct PaymentCard: View {
             }
             HStack(spacing: 4) {
                 FullButton(text: "Сплатити", fillColor: .appBlack, textColor: .white)
-                SolidButton(text: "Детальніше", solidColor: .appBlack, backgroundColor: .clear, textColor: .appBlack)
+                SolidButton(text: "Детальніше", solidColor: .appBlack, backgroundColor: .clear, textColor: .appBlack) {
+                    path.append(NavigationPage.details)
+                }
             }
         }
         
