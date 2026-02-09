@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PaymentsView: View {
+    @State var date: Date = .now
     var body: some View {
         
         ZStack(alignment: .top) {
-            HeaderView(page: HeaderViewContent(totalPrice: "25 500 $", title: "Платежі", data: "В січні 2026", pageType: .paymentsList), action: {
-                print("show calendar")
-            })
+            HeaderView(page: HeaderViewContent(totalPrice: "25 500", title: "Платежі", data: date.withoutDayMonthFormatter, pageType: .paymentsList), date: $date )
                 .zIndex(1)
+                       
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 19) {
                     PaymentCard()
@@ -27,4 +27,8 @@ struct PaymentsView: View {
         .padding(.horizontal, 20)
         .background(.appBlack)
     }
+}
+
+#Preview {
+    PaymentsView()
 }

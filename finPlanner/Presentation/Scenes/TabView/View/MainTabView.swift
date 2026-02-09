@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State var selectionPag: TabPage = .paymentsList
+    @State var selectionPag: TabPage = .main
     
     init() {
         UITabBar.appearance().isHidden = true

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainViewContentHeader: View {
+    @Binding var payType: PayType
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -17,17 +18,17 @@ struct MainViewContentHeader: View {
                 Spacer()
                 HStack(spacing: 16) {
                     Button {
-                        //
+                        payType = .mounthly
                     } label: {
                         Text("Щомісяця")
-                            .cygre(.black, 12)
+                            .cygre(payType == .mounthly ? .black : .light, 12)
                             .foregroundStyle(.white)
                     }
                     Button {
-                        //
+                        payType = .oneTime
                     } label: {
                         Text("одноразово")
-                            .cygre(.light, 12)
+                            .cygre(payType == .oneTime ? .black : .light , 12)
                             .foregroundStyle(.white)
                     }
 
