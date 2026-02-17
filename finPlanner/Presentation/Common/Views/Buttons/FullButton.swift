@@ -10,10 +10,11 @@ import SwiftUI
 struct FullButton: View {
     var text: String
     var fillColor: Color
-    var textColor: Color 
+    var textColor: Color
+    var action: (() -> Void)?
     var body: some View {
         Button {
-            //
+            action?()
         } label: {
             Text(text)
                 .cygre(.regular, 12)

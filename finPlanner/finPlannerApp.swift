@@ -21,6 +21,9 @@ struct finPlannerApp: App {
                                 DetailsView(path: $path)
                         }
                     }
+                    .onAppear{
+                        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first)
+                    }
             }
         }
     }
