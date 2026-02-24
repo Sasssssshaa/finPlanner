@@ -24,16 +24,17 @@ extension PaymentEntitiy {
         return NSFetchRequest<PaymentEntitiy>(entityName: "PaymentEntitiy")
     }
 
-    @NSManaged public var id: String?
+    @NSManaged public var id: String
     @NSManaged public var type: Int16
-    @NSManaged public var title: String?
-    @NSManaged public var descriptionText: String?
+    @NSManaged public var title: String
+    @NSManaged public var descriptionText: String
     @NSManaged public var paymentAmount: Double
     @NSManaged public var totalAmount: Double
-    @NSManaged public var deuDay: Int16
+    @NSManaged public var dueDay: Int16
     @NSManaged public var dueDate: Date?
     @NSManaged public var isNotificationEnables: Bool
-    @NSManaged public var createdAt: Date?
+    @NSManaged public var createdAt: Date
+    @NSManaged public var lastPay: Date?
 
 }
 

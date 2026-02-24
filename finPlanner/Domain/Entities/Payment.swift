@@ -14,8 +14,9 @@ struct Payment: Identifiable {
     let description: String
     let paymentAmount: Double
     let totalAmount: Double
-    //let dueDay: Int
-    //let dueDate: Date?
+    let dueDay: Int
+    let dueDate: Date?
     let isNotificationEnables: Bool
     let createdAt: Date
+    let lastPay: Data?
 }

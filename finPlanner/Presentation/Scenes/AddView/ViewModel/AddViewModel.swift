@@ -14,18 +14,33 @@ class AddViewModel: ObservableObject {
         self.createUseCase = createUseCase
     }
     
-    @Published var payment: Payment?
+    
+    @Published var isNotificationSelected = false
+    @Published var payType: PayType = .mounthly
+    @Published var isShowCalendar = false
+    @Published var isAdded: Bool = false
+
+    //fields
+    @Published var paymentName: String = ""
+    @Published var description: String = ""
+    @Published var paymentAmount: String = ""
+    @Published var totalAmount: String = ""
+    @Published var date: Date = .now
     
     func createNewPayment() {
         do {
             try createUseCase.execute(payment: Payment(id: UUID().uuidString,
-                                                       type: .mounthly,
-                                                       title: "fefafe",
-                                                       description: "efsefs",
-                                                       paymentAmount: 10,
-                                                       totalAmount: 20,
-                                                       isNotificationEnables: true,
-                                                       createdAt: .now))
+                                                       type: payType,
+                                                       title: paymentName,
+                                                       description: description,
+                                                       paymentAmount: Double(paymentAmount) ?? 0,
+                                                       totalAmount: Double(paymentAmount) ?? 0,
+                                                       dueDay: date.day,
+                                                       dueDate: date,
+                                                       isNotificationEnables: isNotificationSelected,
+                                                       createdAt: .now,
+                                                       lastPay: nil))
+            isAdded.toggle()
         } catch {
             print(error.localizedDescription)
         }

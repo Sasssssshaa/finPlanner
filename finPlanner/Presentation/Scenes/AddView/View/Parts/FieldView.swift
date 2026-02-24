@@ -10,6 +10,7 @@ struct FieldView: View {
     var placeholder: String
     @Binding var text: String
     var isTextField: Bool = true
+    var isPriceField: Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(placeholder)
@@ -21,6 +22,7 @@ struct FieldView: View {
                     .padding(.horizontal, 10)
                     .background(.appGray)
                     .clipShape(Capsule())
+                    .keyboardType(isPriceField ? .decimalPad : .default)
                     .overlay(content: {
                         Capsule()
                             .stroke(.appGray, lineWidth: 1)

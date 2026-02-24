@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var isShowAddView: Bool = false
     @State var payType: PayType = .mounthly
+    @StateObject var viewModel = Assembly.createMainViewModel()
     @Binding var path: NavigationPath
     var body: some View {
         ZStack(alignment: .top) {
@@ -23,13 +24,13 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 19) {
                         switch payType {
                         case .mounthly:
-                            PaymentCard(path: $path)
-                            PaymentCard(path: $path)
-                            PaymentCard(path: $path)
-                            PaymentCard(path: $path)
+                            ForEach(viewModel.payments.filter { $0.type == .mounthly}) { item in
+                                PaymentCard(path: $path, payment: item)
+                            }
                         case .oneTime:
-                            PaymentCard(path: $path)
-                            PaymentCard(path: $path)
+                            ForEach(viewModel.payments.filter { $0.type == .mounthly}) { item in
+                                PaymentCard(path: $path, payment: item)
+                            }
                         }
                        
 
@@ -44,6 +45,9 @@ struct ContentView: View {
         .background(.appBlack)
         .sheet(isPresented: $isShowAddView) {
             AddView()
+        }
+        .onAppear {
+            viewModel.fetchPayments()
         }
     }
 }
